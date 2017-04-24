@@ -9,7 +9,11 @@ namespace Garaget.Models
 {
     public class ParkedVehicle
     {
-        public int VehicleId { get; set; }
+        public ParkedVehicle()
+        {
+            TimeOfCheckIn = DateTime.Now;
+        }
+        public int Id { get; set; }
         public  VehicleType VehicleType { get; set; }
         public string RegNo { get; set; }
         public string Color { get; set; }
