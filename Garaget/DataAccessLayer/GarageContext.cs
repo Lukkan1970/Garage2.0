@@ -9,7 +9,7 @@ namespace Garaget.DataAccessLayer
 {
     public class GarageContext: DbContext
     {
-        public GarageContext() : base("DefaultConnection")
+        public GarageContext()
         {
         }
         public DbSet<ParkedVehicle> ParkedVehicles { get; set; }
