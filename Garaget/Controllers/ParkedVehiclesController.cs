@@ -26,12 +26,6 @@ namespace Garaget.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult VehicleSearch(int id, string vehicleType, string color, string regNo, string make, string model, int noWheels, DateTime timeOfCheckIn)
-        {
-            return View();
-        }
-
         [HttpPost, ActionName("VehicleSearch")]
         public ActionResult VehicleSearch(Enum.VehicleType vehicleType, string color, string regNo, string make, string model, int noWheels)
         {
