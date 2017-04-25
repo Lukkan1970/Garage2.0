@@ -1,7 +1,7 @@
 ﻿@model Garaget.Models.ParkedVehicle
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "CheckOutVehicleConfirmed";
 }
 
 <h2>Check Out Vehicle</h2>
@@ -74,20 +74,24 @@
                 var dateNow = DateTime.Now;
                 var totalTime = (dateNow - Model.TimeOfCheckIn).ToString(@"hh\:mm");
                 var totalCost = ((dateNow - Model.TimeOfCheckIn).TotalHours) * cost;
-                @Html.DisplayFor(modelItem => totalTime)
+                @Html.DisplayFor(modelItem => totalTime);
+                
             }
-            <p>USD</p>
+           USD
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="PRINT" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
 </div>
+
+  @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="PRINT add some action" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "Index")
+
+        
+    </div>
+  }

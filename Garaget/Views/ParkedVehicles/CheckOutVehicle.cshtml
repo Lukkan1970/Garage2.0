@@ -1,14 +1,12 @@
 ﻿@model Garaget.Models.ParkedVehicle
 
 @{
-    ViewBag.Title = "CheckOutVehicleConfirmed";
+    ViewBag.Title = "CheckOutVehicle";
 }
 
-<h2>CheckOutVehicleConfirmed</h2>
+<h2>Vehicle checked out</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -36,7 +34,7 @@
         <th></th>
     </tr>
 
-{
+
    
     <tr>
         <td>
@@ -77,16 +75,20 @@
 
        
     </tr>
-}
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="PRINT" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-
-
+  
 </table>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="PRINT" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "Index")
+
+        
+    </div>
+}
+
+
