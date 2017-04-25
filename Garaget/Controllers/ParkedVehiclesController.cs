@@ -20,34 +20,26 @@ namespace Garaget.Controllers
         {
             return View(db.ParkedVehicles.ToList());
         }
-
+        public ActionResult VehicleSearch()
+        {
+            return View();
+        }
         [HttpPost]
-        public ActionResult VehicleSearch(int id, string vehicleType, string color, string regNo, string make, string model, int noWheels, DateTime timeOfCheckIn)
+        public ActionResult VehicleSearch(string vehicleType, string color, string regNo, string make, string model, int noWheels)
         {
             if (!ModelState.IsValid) return View(HttpStatusCode.InternalServerError);
 
             var vm = db.ParkedVehicles
-              .Where( v => vehicleType   == null              || v.VehicleType.ToString().StartsWith(vehicleType))
-              .Where( v => color         == null              || v.Color.StartsWith(color))
-              .Where( v => regNo         == null              || v.RegNo.StartsWith(regNo))
-              .Where( v => make          == null              || v.Make.StartsWith(make))
-              .Where( v => model         == null              || v.Model.StartsWith(model))
-              .Where( v => noWheels      == 0                 || v.NoWheels == noWheels)
-              .Where( v => timeOfCheckIn == DateTime.MinValue || v.TimeOfCheckIn == timeOfCheckIn)
-              .Select(v => new ParkedVehicle
-                        {
-                            Id          = v.Id,
-                            VehicleType = v.VehicleType,
-                            RegNo       = v.RegNo,
-                            Color       = v.Color,
-                            Make        = v.Make,
-                            Model       = v.Model,
-                            NoWheels    = v.NoWheels
-                        });
-            
-            return View("Index",vm.ToList());
+                //.Where(v => vehicleType == null || v.VehicleType.ToString().StartsWith(vehicleType))
+                //.Where(v => color == null || v.Color.StartsWith(color))
+                //.Where(v => make == null || v.Make.StartsWith(make))
+                //.Where(v => model == null || v.Model.StartsWith(model))
+                //.Where(v => noWheels == 0 || v.NoWheels == noWheels)
+                .Where(v => regNo == null || v.RegNo.StartsWith(regNo));
+
+            return View("Index", vm.ToList());
         }
-        
+
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)
         {
@@ -89,14 +81,10 @@ namespace Garaget.Controllers
         // GET: ParkedVehicles/CheckOutVehicle/5
         public ActionResult CheckOutVehicle(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (parkedVehicle == null)
             {
-                return HttpNotFound();
+                return View("VehicleSearch");
             }
             return View(parkedVehicle);
         }
