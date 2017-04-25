@@ -20,8 +20,12 @@ namespace Garaget.Controllers
         {
             return View(db.ParkedVehicles.ToList());
         }
-
         public ActionResult VehicleSearch()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult VehicleSearch(Enum.VehicleType vehicleType, string regNo, string make, string model)
         {
             return View();
         }
@@ -32,16 +36,14 @@ namespace Garaget.Controllers
             if (!ModelState.IsValid) return View(HttpStatusCode.InternalServerError);
 
             var vm = db.ParkedVehicles
-              .Where(v => vehicleType == 0    || v.VehicleType.ToString().StartsWith(vehicleType.ToString()))
-              //.Where( v => color    == null || v.Color.StartsWith(color))
-              //.Where( v => make     == null || v.Make.StartsWith(make))
-              //.Where( v => model    == null || v.Model.StartsWith(model))
-              //.Where( v => noWheels == 0    || v.NoWheels == noWheels)
-              .Where( v => regNo    == null || v.RegNo.StartsWith(regNo));
+                .Where(v => vehicleType == 0    || v.VehicleType.ToString().StartsWith(vehicleType.ToString()))
+                .Where(v => make        == null || v.Make.StartsWith(make))
+                .Where(v => model       == null || v.Model.StartsWith(model))
+                .Where(v => regNo       == null || v.RegNo.StartsWith(regNo));
 
-            return View("Index",vm.ToList());
+            return View("Index", vm.ToList());
         }
-        
+
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)
         {
@@ -83,14 +85,10 @@ namespace Garaget.Controllers
         // GET: ParkedVehicles/CheckOutVehicle/5
         public ActionResult CheckOutVehicle(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (parkedVehicle == null)
             {
-                return HttpNotFound();
+                return View("VehicleSearch");
             }
             return View(parkedVehicle);
         }
