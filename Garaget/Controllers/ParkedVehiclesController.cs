@@ -36,18 +36,18 @@ namespace Garaget.Controllers
             return View(parkedVehicle);
         }
 
-        // GET: ParkedVehicles/Create
-        public ActionResult Create()
+        // GET: ParkedVehicles/CheckInVehicle
+        public ActionResult CheckInVehicle()
         {
             return View();
         }
 
-        // POST: ParkedVehicles/Create
+        // POST: ParkedVehicles/CheckInVehicle
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,VehicleType,RegNo,Color,Make,Model,NoWheels,TimeOfCheckIn")] ParkedVehicle parkedVehicle)
+        public ActionResult CheckInVehicle([Bind(Include = "Id,VehicleType,RegNo,Color,Make,Model,NoWheels,TimeOfCheckIn")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
@@ -59,8 +59,8 @@ namespace Garaget.Controllers
             return View(parkedVehicle);
         }
 
-        // GET: ParkedVehicles/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: ParkedVehicles/CheckOutVehicle/5
+        public ActionResult CheckOutVehicle(int? id)
         {
             if (id == null)
             {
@@ -74,41 +74,10 @@ namespace Garaget.Controllers
             return View(parkedVehicle);
         }
 
-        // POST: ParkedVehicles/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        // POST: ParkedVehicles/CheckOutVehicle/5
+        [HttpPost, ActionName("CheckOutVehicle")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,VehicleType,RegNo,Color,Make,Model,NoWheels,TimeOfCheckIn")] ParkedVehicle parkedVehicle)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(parkedVehicle).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(parkedVehicle);
-        }
-
-        // GET: ParkedVehicles/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
-            if (parkedVehicle == null)
-            {
-                return HttpNotFound();
-            }
-            return View(parkedVehicle);
-        }
-
-        // POST: ParkedVehicles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult CheckOutVehicleConfirmed(int id)
         {
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             db.ParkedVehicles.Remove(parkedVehicle);
