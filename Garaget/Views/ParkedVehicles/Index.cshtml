@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Garaget.Models.ParkedVehicle>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "The Garage";
 }
 
-<h2>Index</h2>
+<h2>The Garage</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Check in a vehicle", "Create")
 </p>
 <table class="table">
     <tr>
@@ -20,18 +20,8 @@
         <th>
             @Html.DisplayNameFor(model => model.Color)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Make)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoWheels)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeOfCheckIn)
-        </th>
+        <th>Parking time so far</th>
+       
         <th></th>
     </tr>
 
@@ -47,21 +37,18 @@
             @Html.DisplayFor(modelItem => item.Color)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Make)
+            @{ 
+                var dateNow = DateTime.Now;
+                var totalTime = dateNow - item.TimeOfCheckIn;
+                @Html.DisplayFor(modelItem => totalTime)
+            }
+           
         </td>
+      
         <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoWheels)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeOfCheckIn)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+          
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Check out Vehicle", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
