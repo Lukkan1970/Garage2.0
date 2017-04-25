@@ -12,6 +12,6 @@ namespace Garaget.Enum
         Bus,
         Moped,
         Trolley,
-        Shoppingcart
+        ShoppingCart
     }
 }
