@@ -8,10 +8,10 @@ namespace Garaget.Enum
     public enum VehicleType
     {
         Car,
-        MotorCycle,
+        Motorcycle,
         Bus,
         Moped,
         Trolley,
-        ShoppingCart
+        Shoppingcart
     }
 }
