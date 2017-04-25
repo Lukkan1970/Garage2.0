@@ -1,0 +1,93 @@
+﻿@model Garaget.Models.ParkedVehicle
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Check Out Vehicle</h2>
+
+<h3>Are you sure you want to check out this vehicle?</h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Make)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Make)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoWheels)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoWheels)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeOfCheckIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeOfCheckIn)
+        </dd>
+
+        <dt>Total cost:</dt>
+        <dd>
+            @{
+                var cost = 60; //cost per hour
+                var dateNow = DateTime.Now;
+                var totalTime = (dateNow - Model.TimeOfCheckIn).ToString(@"hh\:mm");
+                var totalCost = ((dateNow - Model.TimeOfCheckIn).TotalHours) * cost;
+                @Html.DisplayFor(modelItem => totalTime)
+            }
+            <p>USD</p>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="PRINT" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

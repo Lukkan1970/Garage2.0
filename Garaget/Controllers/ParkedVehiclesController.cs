@@ -94,10 +94,14 @@ namespace Garaget.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CheckOutVehicleConfirmed(int id)
         {
+            
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
+           
+            // return View(parkedVehicle);
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            //return RedirectToAction("CheckOutVehicleConfirmed", parkedVehicle);
+            return View("CheckOutVehicleConfirmed", parkedVehicle);
         }
 
         protected override void Dispose(bool disposing)
