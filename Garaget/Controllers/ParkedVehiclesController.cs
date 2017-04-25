@@ -26,9 +26,9 @@ namespace Garaget.Controllers
         }
         
         [HttpPost, ActionName("VehicleSearch")]
-        public ActionResult VehicleSearch(Enum.VehicleType vehicleType, string color, string regNo, string make, string model, int noWheels)
+        public ActionResult VehicleSearch(Enum.VehicleType vehicleType, string regNo, string make, string model)
         {
-            if (!ModelState.IsValid) return View(HttpStatusCode.InternalServerError);
+            if (!ModelState.IsValid) return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
 
             var vm = db.ParkedVehicles
                 .Where(v => vehicleType == 0    || v.VehicleType.ToString().StartsWith(vehicleType.ToString()))
