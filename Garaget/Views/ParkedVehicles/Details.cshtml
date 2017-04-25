@@ -66,6 +66,19 @@
             @Html.DisplayFor(model => model.TimeOfCheckIn)
         </dd>
 
+        <dt>
+            Parking time so far
+        </dt>
+        <dd>
+            @{
+                var dateNow = DateTime.Now;
+                var totalTime = (dateNow - Model.TimeOfCheckIn).ToString(@"hh\:mm");
+                @Html.DisplayFor(modelItem => totalTime)
+            }
+
+
+        </dd>
+
     </dl>
 </div>
 <p>

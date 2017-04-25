@@ -39,7 +39,7 @@
         <td>
             @{ 
                 var dateNow = DateTime.Now;
-                var totalTime = dateNow - item.TimeOfCheckIn;
+                var totalTime = (dateNow - item.TimeOfCheckIn).ToString(@"hh\:mm");//this converts negativ totaltime to positive. Not a problem because totalTime must be positive
                 @Html.DisplayFor(modelItem => totalTime)
             }
            
