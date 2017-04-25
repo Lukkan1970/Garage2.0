@@ -13,7 +13,7 @@ namespace Garaget.ViewModels
         [DisplayName("Type of Vehicle")]
         public VehicleType VehicleType { get; set; }
 
-        [DisplayName("Registration Number")]        
+        [DisplayName("Registration Number")]
         public string RegNo { get; set; }
 
         [DisplayName("Make")]
