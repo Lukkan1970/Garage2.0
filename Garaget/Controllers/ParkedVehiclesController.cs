@@ -21,6 +21,33 @@ namespace Garaget.Controllers
             return View(db.ParkedVehicles.ToList());
         }
 
+        [HttpPost]
+        public ActionResult VehicleSearch(int id, string vehicleType, string color, string regNo, string make, string model, int noWheels, DateTime timeOfCheckIn)
+        {
+            if (!ModelState.IsValid) return View(HttpStatusCode.InternalServerError);
+
+            var vm = db.ParkedVehicles
+              .Where( v => vehicleType   == null              || v.VehicleType.ToString().StartsWith(vehicleType))
+              .Where( v => color         == null              || v.Color.StartsWith(color))
+              .Where( v => regNo         == null              || v.RegNo.StartsWith(regNo))
+              .Where( v => make          == null              || v.Make.StartsWith(make))
+              .Where( v => model         == null              || v.Model.StartsWith(model))
+              .Where( v => noWheels      == 0                 || v.NoWheels == noWheels)
+              .Where( v => timeOfCheckIn == DateTime.MinValue || v.TimeOfCheckIn == timeOfCheckIn)
+              .Select(v => new ParkedVehicle
+                        {
+                            Id          = v.Id,
+                            VehicleType = v.VehicleType,
+                            RegNo       = v.RegNo,
+                            Color       = v.Color,
+                            Make        = v.Make,
+                            Model       = v.Model,
+                            NoWheels    = v.NoWheels
+                        });
+            
+            return View("Index",vm.ToList());
+        }
+        
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)
         {
@@ -47,7 +74,7 @@ namespace Garaget.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CheckInVehicle([Bind(Include = "Id,VehicleType,RegNo,Color,Make,Model,NoWheels,TimeOfCheckIn")] ParkedVehicle parkedVehicle)
+        public ActionResult CheckInVehicle([Bind(Include = "VehicleType,RegNo,Color,Make,Model,NoWheels")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
