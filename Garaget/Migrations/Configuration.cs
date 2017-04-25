@@ -1,6 +1,5 @@
 namespace Garaget.Migrations
 {
-    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -10,18 +9,23 @@ namespace Garaget.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
+
         protected override void Seed(Garaget.DataAccessLayer.GarageContext context)
         {
-            DateTime date = DateTime.Now;
-            context.ParkedVehicles.AddOrUpdate(
-                v => v.RegNo,
-                new ParkedVehicle { VehicleType = Garaget.Enum.VehicleType.Car, Color = "Blue", Model = "Audi", Make = "A4", NoWheels = 4, RegNo = "ANY719", TimeOfCheckIn = date.AddHours(2) },
-                new ParkedVehicle { VehicleType = Garaget.Enum.VehicleType.Bus, Color = "Red", Model = "Scania", Make = "OmniCity", NoWheels = 10, RegNo = "BUS007", TimeOfCheckIn = date.AddHours(4) },
-                new ParkedVehicle { VehicleType = Garaget.Enum.VehicleType.Moped, Color = "Brown", Model = "Suzuki", Make = "KS50", NoWheels = 2, RegNo = "REG538", TimeOfCheckIn = date.AddHours(6) },
-                new ParkedVehicle { VehicleType = Garaget.Enum.VehicleType.ShoppingCart, Color = "Chrome", Model="CartMaker", Make="UltraShopper", NoWheels = 4, RegNo = "SHO357" }
-            );
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
         }
     }
 }
