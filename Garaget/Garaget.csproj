@@ -182,11 +182,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\ParkedVehicles\Create.cshtml" />
-    <Content Include="Views\ParkedVehicles\Delete.cshtml" />
+    <Content Include="Views\ParkedVehicles\CheckInVehicle.cshtml" />
+    <Content Include="Views\ParkedVehicles\CheckOutVehicle.cshtml" />
     <Content Include="Views\ParkedVehicles\Details.cshtml" />
-    <Content Include="Views\ParkedVehicles\Edit.cshtml" />
     <Content Include="Views\ParkedVehicles\Index.cshtml" />
+    <Content Include="Views\ParkedVehicles\Edit.cshtml" />
+    <Content Include="Views\ParkedVehicles\VehicleSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
