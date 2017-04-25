@@ -14,7 +14,6 @@ namespace Garaget.ViewModels
         public VehicleType VehicleType { get; set; }
 
         [DisplayName("Registration Number")]
-        [Range(1, 6)]
         public string RegNo { get; set; }
 
         [DisplayName("Make")]
