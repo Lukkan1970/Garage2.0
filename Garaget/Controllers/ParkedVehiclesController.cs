@@ -25,17 +25,15 @@ namespace Garaget.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult VehicleSearch(string vehicleType, string color, string regNo, string make, string model, int noWheels)
+        public ActionResult VehicleSearch(Enum.VehicleType vehicleType, string regNo, string make, string model)
         {
             if (!ModelState.IsValid) return View(HttpStatusCode.InternalServerError);
 
             var vm = db.ParkedVehicles
-                //.Where(v => vehicleType == null || v.VehicleType.ToString().StartsWith(vehicleType))
-                //.Where(v => color == null || v.Color.StartsWith(color))
-                //.Where(v => make == null || v.Make.StartsWith(make))
-                //.Where(v => model == null || v.Model.StartsWith(model))
-                //.Where(v => noWheels == 0 || v.NoWheels == noWheels)
-                .Where(v => regNo == null || v.RegNo.StartsWith(regNo));
+                .Where(v => vehicleType == 0    || v.VehicleType.ToString().StartsWith(vehicleType.ToString()))
+                .Where(v => make        == null || v.Make.StartsWith(make))
+                .Where(v => model       == null || v.Model.StartsWith(model))
+                .Where(v => regNo       == null || v.RegNo.StartsWith(regNo));
 
             return View("Index", vm.ToList());
         }

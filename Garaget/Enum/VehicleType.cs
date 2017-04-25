@@ -7,6 +7,7 @@ namespace Garaget.Enum
 {
     public enum VehicleType
     {
+        Any,
         Car,
         Motorcycle,
         Bus,
