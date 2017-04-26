@@ -39,20 +39,20 @@
         </td>
         <td>
             @Html.DisplayFor(model => model.RegNo)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Color)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Make)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Model)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.NoWheels)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.TimeOfCheckIn)
         </td>
 
@@ -62,19 +62,19 @@
                 var cost = 5000; //cost per hour
                 var dateNow = DateTime.Now;
                 var totalTime = (dateNow - Model.TimeOfCheckIn).ToString(@"hh\:mm");
-                var totalCost =  ( (dateNow - Model.TimeOfCheckIn).TotalHours ) * cost;
+                var totalCost = ((dateNow - Model.TimeOfCheckIn).TotalHours) * cost;
                 var totalCostToString = totalCost.ToString("C");
                 @Html.DisplayFor(modelItem => totalCostToString);
-               
-}
 
-  
+            }
+
+
         </td>
 
-       
+
     </tr>
 
-  
+
 </table>
 
 <!-- Trigger the modal with a button -->
@@ -92,81 +92,81 @@
             </div>
             <div class="modal-body">
 
-<div>
-    <h4></h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.VehicleType)
-        </dt>
+                <div>
+                    <h4></h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.VehicleType)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.VehicleType)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.VehicleType)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RegNo)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.RegNo)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RegNo)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.RegNo)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Color)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Color)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Make)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Make)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Make)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Make)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Model)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Model)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Model)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NoWheels)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NoWheels)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NoWheels)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.NoWheels)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TimeOfCheckIn)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.TimeOfCheckIn)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TimeOfCheckIn)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.TimeOfCheckIn)
+                        </dd>
 
                         <dt>Total cost:</dt>
                         <dd>
                             @Html.DisplayFor(modelItem => totalCostToString)
-                           
-                           
+
+
                         </dd>
 
-    </dl>
+                    </dl>
 
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default">Print Dummy Button</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Print Dummy Button</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
 
@@ -180,13 +180,14 @@
 
 @using (Html.BeginForm())
 {
-        @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Print receipt</button>
-            @Html.ActionLink("Back to List", "Index")
-
-        </div>
-    }
+    <div class="form-actions no-color">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Print receipt</button>
+    </div>
+}
+<p>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "label label-primary color-button" })
+</p>
 
 
