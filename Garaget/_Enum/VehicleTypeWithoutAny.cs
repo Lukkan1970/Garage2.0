@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Garaget.Enum
+namespace Garaget._Enum
 {
     public enum VehicleTypeWithoutAny
     {
-        Car,
+        Car = 1,
         Motorcycle,
         Bus,
         Moped,

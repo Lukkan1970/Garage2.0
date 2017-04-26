@@ -32,12 +32,12 @@ namespace Garaget.Controllers
         {
             if (!ModelState.IsValid) return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
 
-            var result = Search(vm.VehicleType, vm.RegNo, vm.Make, vm.Model);
+            var result = Search((_Enum.VehicleTypeWithoutAny)vm.VehicleType, vm.RegNo, vm.Make, vm.Model);
 
             return View("Index", result.ToList());
         }
         
-        private IQueryable<ParkedVehicle> Search(Enum.VehicleType vehicleType, string regNo, string make, string model)
+        private IQueryable<ParkedVehicle> Search(_Enum.VehicleTypeWithoutAny vehicleType, string regNo, string make, string model)
         {
             var vm = db.ParkedVehicles
                     .Where(v => vehicleType == 0 || v.VehicleType.ToString().StartsWith(vehicleType.ToString()))
