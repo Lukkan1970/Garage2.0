@@ -4,55 +4,59 @@
     ViewBag.Title = "The Garage";
 }
 
-<h2>The Garage</h2>
+<h2>Cars in garage</h2>
 
-<p>
-    @Html.ActionLink("Check in vehicle", "CheckInVehicle")
-    @Html.ActionLink("Search for vehicle", "VehicleSearch")
-</p>
-<table class="table">
-    <tr class="info">
-        <th>
-            @Html.DisplayNameFor(model => model.VehicleType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RegNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-        <th>Parking time so far</th>
-       
-        <th></th>
-    </tr>
+<h4>
+    @Html.ActionLink("Check in vehicle", "CheckInVehicle", null, new { @class = "label label-primary color -button" })
+</h4>
+<table class="table table-hover sortable">
+    <thead>
+        <tr class="alert-info">
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>Parking time so far</th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Color)
-        </td>
-        <td>
-            @{ 
-                var dateNow = DateTime.Now;
-                var totalTime = (dateNow - item.TimeOfCheckIn).ToString(@"hh\:mm");//this converts negativ totaltime to positive. Not a problem because totalTime must be positive
-                @Html.DisplayFor(modelItem => totalTime)
-            }
-           
-        </td>
-      
-        <td>
-          
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @*@Html.ActionLink("Check out Vehicle", "Delete", new { id=item.Id })*@
-            @Html.ActionLink("Check out Vehicle", "CheckOutVehicle", new { id = item.Id })
-        </td>
-    </tr>
-}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType)
+                </td>
+                <td>
+                    <strong>
+                        @Html.DisplayFor(modelItem => item.RegNo)
+                    </strong>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @{
+                        var dateNow = DateTime.Now;
+                        var totalTime = (dateNow - item.TimeOfCheckIn).ToString(@"hh\:mm");//this converts negativ totaltime to positive. Not a problem because totalTime must be positive
+                        @Html.DisplayFor(modelItem => totalTime)
+                    }
+
+                </td>
+
+                <td>
+                    @Html.ActionLink("Details", "Details", null, new { id = item.Id, @class = "label label-primary color -button" }) |
+                    @Html.ActionLink("Check Out", "CheckOutVehicle", null, new { id = item.Id, @class = "label label-primary color-button" })
+                </td>
+            </tr>
+                        }
+    </tbody>
 
 </table>

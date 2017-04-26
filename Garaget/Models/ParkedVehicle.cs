@@ -18,6 +18,8 @@ namespace Garaget.Models
 
         public int Id { get; set; }
 
+
+
         [DisplayName("Type of Vehicle")]
         public VehicleType VehicleType { get; set; }
 
@@ -49,5 +51,15 @@ namespace Garaget.Models
         //[DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = false)]
         public DateTime TimeOfCheckIn { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            string typeOfVehicle = VehicleType.GetType().ToString();
+            if (typeOfVehicle == "Any")
+            {
+                yield return new ValidationResult(
+                    "Any is not a valid Vehicle.");
+            }
+        }
     }
 }

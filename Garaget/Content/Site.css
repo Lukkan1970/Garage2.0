@@ -3,6 +3,8 @@
     padding-bottom: 20px;
 }
 
+
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -22,3 +24,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*li,
+li > a,
+li.disabled > a,
+li.disabled > a:hover,
+li.disabled > a:focus,
+li.disabled > a*/
+.color-button
+{
+    color: white;
+}
+
