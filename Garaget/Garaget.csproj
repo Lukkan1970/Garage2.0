@@ -141,6 +141,10 @@
     <Compile Include="Migrations\201704250827362_ParkedVehicle.Designer.cs">
       <DependentUpon>201704250827362_ParkedVehicle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704251149059_Init1.cs" />
+    <Compile Include="Migrations\201704251149059_Init1.Designer.cs">
+      <DependentUpon>201704251149059_Init1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,11 +195,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ParkedVehicles\CheckInVehicle.cshtml" />
-    <Content Include="Views\ParkedVehicles\CheckOutVehicle.cshtml" />
+    <Content Include="Views\ParkedVehicles\CheckOutVehicleConfirmed.cshtml" />
     <Content Include="Views\ParkedVehicles\Details.cshtml" />
     <Content Include="Views\ParkedVehicles\Index.cshtml" />
     <Content Include="Views\ParkedVehicles\Edit.cshtml" />
     <Content Include="Views\ParkedVehicles\VehicleSearch.cshtml" />
+    <Content Include="Views\ParkedVehicles\CheckOutVehicle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -214,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704250827362_ParkedVehicle.resx">
       <DependentUpon>201704250827362_ParkedVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704251149059_Init1.resx">
+      <DependentUpon>201704251149059_Init1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
