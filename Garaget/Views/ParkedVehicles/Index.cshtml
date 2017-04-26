@@ -7,7 +7,7 @@
 <h2>Cars in garage</h2>
 
 <h4>
-    @Html.ActionLink("Check in vehicle", "CheckInVehicle", null, new { @class = "label label-primary color -button" })
+    @Html.ActionLink("Check in vehicle", "CheckInVehicle", null, new { @class = "btn btn-primary color -button" })
 </h4>
 <table class="table table-hover sortable">
     <thead>
@@ -52,8 +52,8 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Details", "Details", null, new { id = item.Id, @class = "label label-primary color -button" }) |
-                    @Html.ActionLink("Check Out", "CheckOutVehicle", null, new { id = item.Id, @class = "label label-primary color-button" })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-success btn-xs color-button" }) |
+                    @Html.ActionLink("Check Out", "CheckOutVehicle", new { id = item.Id }, new { @class = "btn btn-danger btn-xs color-button" })
                 </td>
             </tr>
                         }

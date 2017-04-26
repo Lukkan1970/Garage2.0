@@ -7,7 +7,6 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Garaget.Models
-
 {
     public class ParkedVehicle
     {
@@ -18,9 +17,8 @@ namespace Garaget.Models
 
         public int Id { get; set; }
 
-
-
         [DisplayName("Type of Vehicle")]
+        //[NotAnyVehicle]
         public VehicleType VehicleType { get; set; }
 
         [DisplayName("Registration Number")]
@@ -52,14 +50,14 @@ namespace Garaget.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = false)]
         public DateTime TimeOfCheckIn { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            string typeOfVehicle = VehicleType.GetType().ToString();
-            if (typeOfVehicle == "Any")
-            {
-                yield return new ValidationResult(
-                    "Any is not a valid Vehicle.");
-            }
-        }
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    string typeOfVehicle = VehicleType.GetType().ToString();
+        //    if (typeOfVehicle == "Any")
+        //    {
+        //        yield return new ValidationResult(
+        //            "Any is not a valid Vehicle.");
+        //    }
+        //}
     }
 }
