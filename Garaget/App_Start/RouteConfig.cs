@@ -15,10 +15,13 @@ namespace Garaget
 
             routes.MapMvcAttributeRoutes();
 
+            //routes.MapRoute("ParkedVehicles", "parkedvehicles/{name}",
+            //    new { controller = "ParkedVehicles", action = "Index", name = "" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "ParkedVehicles", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

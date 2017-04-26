@@ -24,3 +24,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*li,
+li > a,
+li.disabled > a,
+li.disabled > a:hover,
+li.disabled > a:focus,
+li.disabled > a*/
+.color-button
+{
+    color: white;
+}
+
