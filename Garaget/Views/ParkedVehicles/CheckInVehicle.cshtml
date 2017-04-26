@@ -1,7 +1,7 @@
 ﻿@model Garaget.Models.ParkedVehicle
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Check In";
 }
 
 <h2>Check In Vehicle</h2>
@@ -65,14 +65,14 @@
         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Park" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "label label-primary color-button" })
 </div>
 
 @section Scripts {

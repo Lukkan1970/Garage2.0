@@ -10,6 +10,8 @@ namespace Garaget.ViewModels
 {
     public class VehicleSearchViewModel
     {
+        public int Id { get; set; }
+
         [DisplayName("Type of Vehicle")]
         public VehicleType VehicleType { get; set; }
 
@@ -21,6 +23,5 @@ namespace Garaget.ViewModels
 
         [DisplayName("Model")]
         public string Model { get; set; }
-
     }
 }

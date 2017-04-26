@@ -50,7 +50,7 @@
         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Search" class="btn btn-primary" />
+                <input type="submit" value="Search Car" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@
 @Html.Action("VehicleSearch", "ParkedVehicles", new { vm = Model})
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "label label-primary color-button" })
 </div>
 
 @section Scripts {
