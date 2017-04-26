@@ -52,8 +52,8 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Details", "Details", null, new { id = item.Id, @class = "label label-primary color -button" }) |
-                    @Html.ActionLink("Check Out", "CheckOutVehicle", null, new { id = item.Id, @class = "label label-primary color-button" })
+                    @Html.ActionLink("Details", "Details",  new { id = item.Id }, new  { @class = "label label-primary color -button" }) |
+                    @Html.ActionLink("Check Out", "CheckOutVehicle",null, new { id = item.Id } , new { @class = "label label-primary color-button" })                 
                 </td>
             </tr>
                         }
