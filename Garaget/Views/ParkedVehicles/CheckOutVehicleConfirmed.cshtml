@@ -4,10 +4,10 @@
     ViewBag.Title = "CheckOutVehicleConfirmed";
 }
 
-<h2>Check Out Vehicle</h2>
+<h2>Vehicle checked out</h2>
 
-<h3>Are you sure you want to check out this vehicle?</h3>
-<div>
+<h3>Print a receipt</h3>
+<div >
     <h4></h4>
     <hr />
     <dl class="dl-horizontal">
@@ -84,14 +84,16 @@
 
 </div>
 
+
   @using (Html.BeginForm())
   {
     @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
         <input type="submit" value="PRINT add some action" class="btn btn-default" /> |
+       
         @Html.ActionLink("Back to List", "Index")
 
-        
     </div>
+
   }

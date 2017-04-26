@@ -86,22 +86,23 @@ namespace Garaget.Controllers
             {
                 return View("VehicleSearch");
             }
+
+            
+            db.ParkedVehicles.Remove(parkedVehicle);
+            db.SaveChanges();
             return View(parkedVehicle);
         }
 
         // POST: ParkedVehicles/CheckOutVehicle/5
         [HttpPost, ActionName("CheckOutVehicle")]
         [ValidateAntiForgeryToken]
-        public ActionResult CheckOutVehicleConfirmed(int id)
+        public ActionResult CheckOutVehicleConfirmed(int id)//Never called
         {
             
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
-           
-            // return View(parkedVehicle);
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
-            //return RedirectToAction("CheckOutVehicleConfirmed", parkedVehicle);
-            return View("CheckOutVehicleConfirmed", parkedVehicle);
+            return View(parkedVehicle);
         }
 
         protected override void Dispose(bool disposing)
