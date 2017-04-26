@@ -34,7 +34,7 @@ namespace Garaget.Controllers
 
             var result = Search(vm.VehicleType, vm.RegNo, vm.Make, vm.Model);
 
-            return PartialView("_VehicleList", result.ToList());
+            return View("Index", result.ToList());
         }
         
         private IQueryable<ParkedVehicle> Search(Enum.VehicleType vehicleType, string regNo, string make, string model)
