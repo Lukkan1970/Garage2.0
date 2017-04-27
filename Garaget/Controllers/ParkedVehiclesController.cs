@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Garaget.DataAccessLayer;
 using Garaget.Models;
+using Garaget.ViewModels;
 
 namespace Garaget.Controllers
 {
@@ -89,31 +90,34 @@ namespace Garaget.Controllers
 
 
         // GET: ParkedVehicles/CheckOutVehicle/5
+        [OutputCache]
         public ActionResult CheckOutVehicle(int? id)
         {
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (id == null || parkedVehicle == null)
             {
-                return RedirectToAction("FindVehicleForCheckOut");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
-            return View(parkedVehicle);
+  
+           
+            return View(CheckOutTicketViewModel.map(parkedVehicle));
         }
 
-        // POST: ParkedVehicles/CheckOutVehicle/5
-        [HttpPost, ActionName("CheckOutVehicle")]
-        [ValidateAntiForgeryToken]
-        public ActionResult CheckOutVehicleConfirmed(int id)//Never called
-        {
+        //// POST: ParkedVehicles/CheckOutVehicle/5
+        //[HttpPost, ActionName("CheckOutVehicle")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult CheckOutVehicleConfirmed(int id)//Never called
+        //{
             
-            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
-            db.ParkedVehicles.Remove(parkedVehicle);
-            db.SaveChanges();
-            return View(parkedVehicle);
-        }
+        //    ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
+        //    db.ParkedVehicles.Remove(parkedVehicle);
+        //    db.SaveChanges();
+        //    return View(parkedVehicle);
+        //}
 
         protected override void Dispose(bool disposing)
         {

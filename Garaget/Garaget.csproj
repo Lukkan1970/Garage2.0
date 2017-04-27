@@ -151,6 +151,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CheckOutTicketViewModel.cs" />
     <Compile Include="ViewModels\VehicleSearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
