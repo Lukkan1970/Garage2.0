@@ -94,7 +94,7 @@ namespace Garaget.Controllers
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (id == null || parkedVehicle == null)
             {
-                return RedirectToAction("FindVehicleForCheckOut");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             
