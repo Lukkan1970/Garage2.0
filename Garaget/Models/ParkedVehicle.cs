@@ -1,4 +1,4 @@
-﻿using Garaget.Enum;
+﻿using Garaget._Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +15,15 @@ namespace Garaget.Models
             TimeOfCheckIn = DateTime.Now;
         }
 
+        
+
         public int Id { get; set; }
 
         [DisplayName("Type of Vehicle")]
         //[NotAnyVehicle]
-        public VehicleType VehicleType { get; set; }
-
+        [Range(1, (int)VehicleTypeWithoutAny.Shoppingcart, ErrorMessage = "Vehicle Type is required.")]
+        public VehicleTypeWithoutAny VehicleType { get; set; }
+        
         [DisplayName("Registration Number")]
         [RegularExpression(pattern: "^[A-Z]{3}[0-9]{3}", ErrorMessage = "Only swedish registration numbers allowed like: AAA999.")]
         [Required]
