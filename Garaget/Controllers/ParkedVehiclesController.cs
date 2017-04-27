@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Garaget.DataAccessLayer;
 using Garaget.Models;
+using Garaget.ViewModels;
 
 namespace Garaget.Controllers
 {
@@ -18,9 +19,15 @@ namespace Garaget.Controllers
         private GarageContext db = new GarageContext();
 
         // GET: ParkedVehicles
-        public ActionResult Index()
+        public ActionResult Index(bool newVehicle = false)
         {
-            return View(db.ParkedVehicles.ToList());
+            IEnumerable<ParkedVehicle> List = db.ParkedVehicles.ToList();
+
+            IndexViewModel vm = new IndexViewModel();
+            vm.NewVehicle = newVehicle;
+            vm.Vehicles = List;
+
+            return View(vm);
         }
         public ActionResult VehicleSearch()
         {
@@ -28,15 +35,15 @@ namespace Garaget.Controllers
         }
 
         [HttpPost, ActionName("VehicleSearch")]
-        public ActionResult VehicleSearch(ViewModels.VehicleSearchViewModel vm)
+        public ActionResult VehicleSearch(VehicleSearchViewModel vm)
         {
             if (!ModelState.IsValid) return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-
             var result = Search((_Enum.VehicleTypeWithoutAny)vm.VehicleType, vm.RegNo, vm.Make, vm.Model);
+            var vmToReturn = new IndexViewModel { NewVehicle = false, Vehicles = result.ToList() };
 
-            return View("Index", result.ToList());
+            return View("Index", vmToReturn);
         }
-        
+
         private IQueryable<ParkedVehicle> Search(_Enum.VehicleTypeWithoutAny vehicleType, string regNo, string make, string model)
         {
             var vm = db.ParkedVehicles
@@ -80,7 +87,7 @@ namespace Garaget.Controllers
             {
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { newVehicle = true });
             }
 
             return View(parkedVehicle);
@@ -94,10 +101,10 @@ namespace Garaget.Controllers
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (id == null || parkedVehicle == null)
             {
-                return RedirectToAction("FindVehicleForCheckOut");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            
+
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
             return View(parkedVehicle);
@@ -108,7 +115,7 @@ namespace Garaget.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CheckOutVehicleConfirmed(int id)//Never called
         {
-            
+
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
