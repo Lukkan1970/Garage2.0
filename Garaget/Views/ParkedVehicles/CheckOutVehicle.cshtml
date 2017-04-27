@@ -39,20 +39,20 @@
         </td>
         <td>
             @Html.DisplayFor(model => model.RegNo)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Color)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Make)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Model)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.NoWheels)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.TimeOfCheckIn)
         </td>
 
@@ -62,19 +62,19 @@
                 var cost = 5000; //cost per hour
                 var dateNow = DateTime.Now;
                 var totalTime = (dateNow - Model.TimeOfCheckIn).ToString(@"hh\:mm");
-                var totalCost =  ( (dateNow - Model.TimeOfCheckIn).TotalHours ) * cost;
+                var totalCost = ((dateNow - Model.TimeOfCheckIn).TotalHours) * cost;
                 var totalCostToString = totalCost.ToString("C");
                 @Html.DisplayFor(modelItem => totalCostToString);
-               
+
             }
-           
-  
+
+
         </td>
 
-       
+
     </tr>
 
-  
+
 </table>
 
 <!-- Trigger the modal with a button -->
@@ -155,8 +155,8 @@
                         <dt>Total cost:</dt>
                         <dd>
                             @Html.DisplayFor(modelItem => totalCostToString)
-                           
-                           
+
+
                         </dd>
 
                     </dl>
@@ -165,8 +165,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default">Print Dummy Button</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Print Dummy Button</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
 
@@ -183,10 +183,11 @@
     @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Print receipt</button>
-        @Html.ActionLink("Back to List", "Index")
-
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Print receipt</button>
     </div>
 }
+<p>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "label label-primary color-button" })
+</p>
 
 

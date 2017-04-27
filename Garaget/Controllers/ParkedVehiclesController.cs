@@ -13,6 +13,8 @@ namespace Garaget.Controllers
 {
     public class ParkedVehiclesController : Controller
     {
+
+
         private GarageContext db = new GarageContext();
 
         // GET: ParkedVehicles
@@ -24,20 +26,27 @@ namespace Garaget.Controllers
         {
             return View();
         }
-        
+
         [HttpPost, ActionName("VehicleSearch")]
-        public ActionResult VehicleSearch(Enum.VehicleType vehicleType, string regNo, string make, string model)
+        public ActionResult VehicleSearch(ViewModels.VehicleSearchViewModel vm)
         {
             if (!ModelState.IsValid) return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
 
-            var vm = db.ParkedVehicles
-                .Where(v => vehicleType == 0    || v.VehicleType.ToString().StartsWith(vehicleType.ToString()))
-                .Where(v => make        == null || v.Make.StartsWith(make))
-                .Where(v => model       == null || v.Model.StartsWith(model))
-                .Where(v => regNo       == null || v.RegNo.StartsWith(regNo));
+            var result = Search((_Enum.VehicleTypeWithoutAny)vm.VehicleType, vm.RegNo, vm.Make, vm.Model);
 
-            return View("Index", vm.ToList());
+            return View("Index", result.ToList());
         }
+        
+        private IQueryable<ParkedVehicle> Search(_Enum.VehicleTypeWithoutAny vehicleType, string regNo, string make, string model)
+        {
+            var vm = db.ParkedVehicles
+                    .Where(v => vehicleType == 0 || v.VehicleType.ToString().StartsWith(vehicleType.ToString()))
+                    .Where(v => make == null || v.Make.StartsWith(make))
+                    .Where(v => model == null || v.Model.StartsWith(model))
+                    .Where(v => regNo == null || v.RegNo.StartsWith(regNo));
+            return vm;
+        }
+
 
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)
@@ -77,13 +86,15 @@ namespace Garaget.Controllers
             return View(parkedVehicle);
         }
 
+
+
         // GET: ParkedVehicles/CheckOutVehicle/5
         public ActionResult CheckOutVehicle(int? id)
         {
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
-            if (parkedVehicle == null)
+            if (id == null || parkedVehicle == null)
             {
-                return View("VehicleSearch");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             
