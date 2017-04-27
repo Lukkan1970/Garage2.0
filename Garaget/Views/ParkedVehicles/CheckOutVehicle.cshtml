@@ -132,8 +132,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default">Print Dummy Button</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Print Dummy Button</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
 
@@ -150,10 +150,11 @@
     @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Print receipt</button>
-        @Html.ActionLink("Back to List", "Index")
-
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Print receipt</button>
     </div>
 }
+<p>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "label label-primary color-button" })
+</p>
 
 
