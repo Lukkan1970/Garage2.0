@@ -131,6 +131,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ParkedVehiclesController.cs" />
     <Compile Include="DataAccessLayer\GarageContext.cs" />
+    <Compile Include="Models\ParkedVehiclesStatistics.cs" />
     <Compile Include="_Enum\VehicleType.cs" />
     <Compile Include="_Enum\VehicleTypeWithoutAny.cs" />
     <Compile Include="Migrations\201704241225056_Init.cs" />
