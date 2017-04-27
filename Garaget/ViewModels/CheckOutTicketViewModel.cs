@@ -7,23 +7,35 @@ using System.Web;
 
 namespace Garaget.ViewModels
 {
-    public class CheckOutTicketViewModel
+    public class CheckOutTicketViewModel : Models.ParkedVehicle
     {
 
-        public int Id { get; set; }
-
-        [DisplayName("Type of Vehicle")]
-        public VehicleType VehicleType { get; set; }
-
-        [DisplayName("Registration Number")]
-        public string RegNo { get; set; }
-
-        [DisplayName("Check In Time")]
-        public DateTime TimeOfCheckIn { get; set; }
-
         [DisplayName("Total Cost")]
-        public string TotalCost { get; set; }
+        public string TotalCost
+        {
+            get
+            {
+                var cost = 5000; //cost per hour
+                var dateNow = DateTime.Now;
+                var totalCost = ((dateNow - this.TimeOfCheckIn).TotalHours) * cost;
+                var totalCostToString = totalCost.ToString("C");
+              
 
-        
+                return totalCostToString;
+            }
+        }
+
+        public static CheckOutTicketViewModel map(Models.ParkedVehicle model)
+        {
+            var vm = new CheckOutTicketViewModel()
+            {
+                RegNo = model.RegNo,
+                TimeOfCheckIn = model.TimeOfCheckIn,
+                VehicleType = model.VehicleType
+
+            };
+            return vm;
+        }
     }
+    
 }

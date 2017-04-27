@@ -1,4 +1,4 @@
-﻿@model Garaget.Models.ParkedVehicle
+﻿@model Garaget.ViewModels.CheckOutTicketViewModel
 
 @{
     ViewBag.Title = "CheckOutVehicle";
@@ -15,22 +15,11 @@
             @Html.DisplayNameFor(model => model.RegNo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Make)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoWheels)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.TimeOfCheckIn)
         </th>
-        <th>The Cost</th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </th>
     </tr>
 
     <tr>
@@ -39,42 +28,20 @@
         </td>
         <td>
             @Html.DisplayFor(model => model.RegNo)
-        </td>                         
-        <td>                          
-            @Html.DisplayFor(model => model.Color)
-        </td>                         
-        <td>                          
-            @Html.DisplayFor(model => model.Make)
-        </td>                         
-        <td>                          
-            @Html.DisplayFor(model => model.Model)
-        </td>                         
-        <td>                          
-            @Html.DisplayFor(model => model.NoWheels)
-        </td>                         
-        <td>                          
+        </td>
+        <td>
             @Html.DisplayFor(model => model.TimeOfCheckIn)
         </td>
 
 
         <td>
-            @{
-                var cost = 5000; //cost per hour
-                var dateNow = DateTime.Now;
-                var totalTime = (dateNow - Model.TimeOfCheckIn).ToString(@"hh\:mm");
-                var totalCost =  ( (dateNow - Model.TimeOfCheckIn).TotalHours ) * cost;
-                var totalCostToString = totalCost.ToString("C");
-                @Html.DisplayFor(modelItem => totalCostToString);
-               
-            }
-           
-  
+            @Html.DisplayFor(model => model.TotalCost);
         </td>
 
-       
+
     </tr>
 
-  
+
 </table>
 
 <!-- Trigger the modal with a button -->
@@ -152,11 +119,11 @@
                             @Html.DisplayFor(model => model.TimeOfCheckIn)
                         </dd>
 
-                        <dt>Total cost:</dt>
+                        <dt>@Html.DisplayNameFor(model => model.TotalCost)</dt>
                         <dd>
-                            @Html.DisplayFor(modelItem => totalCostToString)
-                           
-                           
+                            @Html.DisplayFor(model => model.TotalCost)
+
+
                         </dd>
 
                     </dl>
