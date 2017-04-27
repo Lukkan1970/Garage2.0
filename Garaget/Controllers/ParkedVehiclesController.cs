@@ -18,10 +18,13 @@ namespace Garaget.Controllers
         private GarageContext db = new GarageContext();
 
         // GET: ParkedVehicles
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult Index()
         {
             return View(db.ParkedVehicles.ToList());
         }
+
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult VehicleSearch()
         {
             return View();
