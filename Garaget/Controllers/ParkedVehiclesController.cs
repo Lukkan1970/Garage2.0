@@ -90,7 +90,7 @@ namespace Garaget.Controllers
 
 
         // GET: ParkedVehicles/CheckOutVehicle/5
-        [OutputCache]
+        
         public ActionResult CheckOutVehicle(int? id)
         {
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
