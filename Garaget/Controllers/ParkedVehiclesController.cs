@@ -23,9 +23,18 @@ namespace Garaget.Controllers
         {
             return View(db.ParkedVehicles.ToList());
         }
+
         public ActionResult VehicleSearch()
         {
             return View();
+        }
+
+        public ActionResult Statistics()
+        {
+            var vm = new StatisticsViewModel();
+            vm.Vehicles = db.ParkedVehicles.ToList();
+            
+            return View(vm);
         }
 
         [HttpPost, ActionName("VehicleSearch")]
